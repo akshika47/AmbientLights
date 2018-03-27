@@ -6,6 +6,7 @@
 char ssid[] = ""; //SSID of your Wi-Fi router
 char pass[] = ""; //Password of your Wi-Fi router
 int delayval = 500; // delay for half a second
+
 int LED = D5;
 Adafruit_NeoPixel ring = Adafruit_NeoPixel(12, LED , NEO_GRB + NEO_KHZ800);
 
@@ -14,8 +15,11 @@ void setup()
   Serial.begin(115200);
   ring.begin();
   ring.setBrightness(30); //adjust brightness here
-  ring.show();
+  ring.show(); //make the neo pixels show the configuration
+
+  
 /*
+  //Uncomment the code snipet below to activate the wifi connection
   // Connect to Wi-Fi network
   Serial.println();
   Serial.println();
