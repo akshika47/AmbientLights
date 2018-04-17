@@ -10,10 +10,10 @@
 <script>
     document.getElementById("blue").onclick = function() {myFunctionblue()};
 
-    function myFunctionblue() {
+    function myFunctionblue() { 
         document.getElementById("blue").innerHTML = "Pressed!";
         var http = new XMLHttpRequest();
-        var url = "http://127.0.0.1:5000/lights/blue";
+        var url = "http://127.0.0.1:5000/lights/off";
         var params = "";
         http.open("POST", url, true);
         http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -31,7 +31,7 @@
     function myFunctiongreen() {
         document.getElementById("green").innerHTML = "Pressed!";
         var http = new XMLHttpRequest();
-        var url = "http://127.0.0.1:5000/lights/green";
+        var url = "http://127.0.0.1:5000/lights/on";
         var params = "";
         http.open("POST", url, true);
         http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
