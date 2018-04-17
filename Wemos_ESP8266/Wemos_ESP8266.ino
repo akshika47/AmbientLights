@@ -16,7 +16,7 @@ char pass[] = ""; //Password of your Wi-Fi router
 #define AIO_KEY         ""
 
 
-int delayval = 500; // delay for half a second
+int delayval = 50; // delay for half a second
 
 // Create an ESP8266 WiFiClient class to connect to the MQTT server.
 WiFiClient client;
@@ -38,7 +38,7 @@ void setup()
 {
   Serial.begin(115200);
   ring.begin();
-  ring.setBrightness(30); //adjust brightness here
+  ring.setBrightness(250); //adjust brightness here
   ring.show(); //make the neo pixels show the configuration
 
   // Connect to Wi-Fi network
@@ -80,12 +80,12 @@ void loop () {
       Serial.println("Inside the loop2");
 
       String str((char *)onoffbutton.lastread);
-      if (str.equals("green"))
+      if (str.equals("on"))
       {
         for (int i = 0; i < 12; i++) {
           Serial.println("Inside the loop3");
           // pixels.Color takes RGB values, from 0,0,0 up to 255,255,255
-          ring.setPixelColor(i, ring.Color(0, 150, 0)); // Moderately bright green color.
+          ring.setPixelColor(i, ring.Color(255, 0, 0)); // Moderately bright green color.
 
           ring.show(); // This sends the updated pixel color to the hardware.
 
@@ -93,16 +93,16 @@ void loop () {
 
         }
       }
-      if (str.equals("blue"))
+      if (str.equals("off"))
       {
         for (int i = 0; i < 12; i++) {
           Serial.println("Inside the loop3");
           // pixels.Color takes RGB values, from 0,0,0 up to 255,255,255
-          ring.setPixelColor(i, ring.Color(0, 0, 150)); // Moderately bright blue color.
+          ring.setPixelColor(i, ring.Color(0, 0, 0)); // Moderately bright blue color.
 
           ring.show(); // This sends the updated pixel color to the hardware.
 
-          delay(delayval); // Delay for a period of time (in milliseconds).
+          //delay(delayval); // Delay for a period of time (in milliseconds).
 
         }
 
