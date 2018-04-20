@@ -229,6 +229,25 @@ def audioplay4():
         print(topic)
         return {'hello': 'world'}
 
+
+@app.route('/video/5/play', methods=['POST'])
+def videoplay5():
+
+    if request.method == 'POST':
+        topic = '{}/feeds/onoff'.format(USERNAME)
+        client.publish(topic, payload="5v")
+        print(topic)
+        return {'hello': 'world'}
+
+
+@app.route('/audio/5/play', methods=['POST'])
+def audioplay5():
+    if request.method == 'POST':
+        topic = '{}/feeds/onoff'.format(USERNAME)
+        client.publish(topic, payload="5a")
+        print(topic)
+        return {'hello': 'world'}
+
 if __name__ == '__main__':
 
     if USERNAME == '' or PASSWORD == '':
