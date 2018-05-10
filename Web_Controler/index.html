@@ -1,17 +1,268 @@
 <!DOCTYPE html>
 <html>
 <body>
+<style>
+    * {
+        box-sizing: border-box;
+    }
 
-<h1>Adaptive Interfaces Control Panel</h1>
+    /* Create three equal columns that floats next to each other */
+    .column {
+        float: left;
+        width: 33.33%;
+        padding: 10px;
+        height: 300px; /* Should be removed. Only for demonstration */
+    }
 
-<h2 id="blue">Turn Light 01 to blue</h2>
-<h2 id="green">Turn Light 01 to green</h2>
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+</style>
+
+<div class="row">
+    <div class="column">
+        <h3>Instruction 1 : Take a mug and 2 spoons from drawer 2</h3>
+        <h2 id="light4on">Light 4 on</h2>
+        <h2 id="light4off">Light 4 off</h2>
+        <h2 id="playvideo1">Play Video 1</h2>
+        <h2 id="playaudio1">Play Audio 1</h2>
+        <hr>
+    </div>
+
+    <div class="column">
+        <h3>Instruction 2 : Take sugar, paper filters and coffee from drawer 4</h3>
+        <h2 id="light6on">Light 5 on</h2>
+        <h2 id="light6off">Light 5 off</h2>
+        <h2 id="playvideo2">Play Video 2</h2>
+        <h2 id="playaudio2">Play Audio 2</h2>
+        <hr>
+    </div>
+
+    <div class="column">
+        <h3>Instruction 3 : Take a glass jug from cupboard </h3>
+        <h2 id="light7on">Light 7 on</h2>
+        <h2 id="light7off">Light 7 off</h2>
+        <h2 id="playvideo3">Play Video 3</h2>
+        <h2 id="playaudio3">Play Audio 3</h2>
+        <hr>
+    </div>
+</div>
+
+<div class="row">
+    <div class="column">
+        <h3>Instructions 4 : Take Milk from the fridge </h3>
+        <h2 id="light8on">Light 8 on</h2>
+        <h2 id="light8off">Light 8 off</h2>
+        <h2 id="playvideo61">Play Video 61</h2>
+        <h2 id="playvideo62">Play Video 62</h2>
+        <h2 id="playaudio6">Play Audio 5</h2>
+        <hr>
+    </div>
+    <div class="column">
+        <h3>Instruction 5 : Wash Items and wipe them </h3>
+        <h2 id="light1on">Light 1 on</h2>
+        <h2 id="light1off">Light 1 off</h2>
+        <h2 id="playvideo4">Play Video 4</h2>
+        <h2 id="playaudio4">Play Audio 4</h2>
+        <hr>
+    </div>
+    <div class="column">
+        <h3>Instructions 6 : Make Coffee  using the machine</h3>
+        <h2 id="light2on">Light 2 on</h2>
+        <h2 id="light2off">Light 2 off</h2>
+        <h2 id="playvideo5">Play Video 5</h2>
+        <h2 id="playaudio5">Play Audio 5</h2>
+        <hr>
+    </div>
+</div>
+
 
 <script>
-    document.getElementById("blue").onclick = function() {myFunctionblue()};
+    document.getElementById("light4on").onclick = function() {myFunctionLight4On()};
 
-    function myFunctionblue() { 
-        document.getElementById("blue").innerHTML = "Pressed!";
+    function myFunctionLight4On() {
+        document.getElementById("light4on").innerHTML = "Pressed!";
+        var http = new XMLHttpRequest();
+        var url = "http://127.0.0.1:5000/lights/4/on";
+        var params = "";
+        http.open("POST", url, true);
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        http.onreadystatechange = function() {//Call a function when the state changes.
+            if(http.readyState == 4 && http.status == 200) {
+                alert(http.responseText);
+            }
+        }
+        http.send(params);
+    }
+
+
+    document.getElementById("light4off").onclick = function() {myFunctionLight4off()};
+
+    function myFunctionLight4off() {
+        document.getElementById("light4off").innerHTML = "Pressed!";
+        var http = new XMLHttpRequest();
+        var url = "http://127.0.0.1:5000/lights/4/off";
+        var params = "";
+        http.open("POST", url, true);
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        http.onreadystatechange = function() {//Call a function when the state changes.
+            if(http.readyState == 4 && http.status == 200) {
+                alert(http.responseText);
+            }
+        }
+        http.send(params);
+    }
+
+    document.getElementById("playvideo1").onclick = function() {myFunctionPlayVideo1()};
+
+    function myFunctionPlayVideo1() {
+        document.getElementById("playvideo1").innerHTML = "Pressed!";
+        var http = new XMLHttpRequest();
+        var url = "http://127.0.0.1:5000/video/1/play";
+        var params = "";
+        http.open("POST", url, true);
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        http.onreadystatechange = function() {//Call a function when the state changes.
+            if(http.readyState == 4 && http.status == 200) {
+                alert(http.responseText);
+            }
+        }
+        http.send(params);
+    }
+
+
+    document.getElementById("playaudio1").onclick = function() {myFunctionPlayAudio1()};
+
+    function myFunctionPlayAudio1() {
+        document.getElementById("playaudio1").innerHTML = "Pressed!";
+        var http = new XMLHttpRequest();
+        var url = "http://127.0.0.1:5000/audio/1/play";
+        var params = "";
+        http.open("POST", url, true);
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        http.onreadystatechange = function() {//Call a function when the state changes.
+            if(http.readyState == 4 && http.status == 200) {
+                alert(http.responseText);
+            }
+        }
+        http.send(params);
+    }
+
+
+    document.getElementById("light6on").onclick = function() {myFunctionLight6On()};
+
+    function myFunctionLight6On() {
+        document.getElementById("light6on").innerHTML = "Pressed!";
+        var http = new XMLHttpRequest();
+        var url = "http://127.0.0.1:5000/lights/6/on";
+        var params = "";
+        http.open("POST", url, true);
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        http.onreadystatechange = function() {//Call a function when the state changes.
+            if(http.readyState == 4 && http.status == 200) {
+                alert(http.responseText);
+            }
+        }
+        http.send(params);
+    }
+
+
+    document.getElementById("light6off").onclick = function() {myFunctionLight6Off()};
+
+    function myFunctionLight6Off() {
+        document.getElementById("light6off").innerHTML = "Pressed!";
+        var http = new XMLHttpRequest();
+        var url = "http://127.0.0.1:5000/lights/6/off";
+        var params = "";
+        http.open("POST", url, true);
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        http.onreadystatechange = function() {//Call a function when the state changes.
+            if(http.readyState == 4 && http.status == 200) {
+                alert(http.responseText);
+            }
+        }
+        http.send(params);
+    }
+
+    document.getElementById("playvideo2").onclick = function() {myFunctionPlayVideo2()};
+
+    function myFunctionPlayVideo2() {
+        document.getElementById("playvideo2").innerHTML = "Pressed!";
+        var http = new XMLHttpRequest();
+        var url = "http://127.0.0.1:5000/video/2/play";
+        var params = "";
+        http.open("POST", url, true);
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        http.onreadystatechange = function() {//Call a function when the state changes.
+            if(http.readyState == 4 && http.status == 200) {
+                alert(http.responseText);
+            }
+        }
+        http.send(params);
+    }
+
+
+    document.getElementById("playaudio2").onclick = function() {myFunctionPlayAudio2()};
+
+    function myFunctionPlayAudio2() {
+        document.getElementById("playaudio2").innerHTML = "Pressed!";
+        var http = new XMLHttpRequest();
+        var url = "http://127.0.0.1:5000/audio/2/play";
+        var params = "";
+        http.open("POST", url, true);
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        http.onreadystatechange = function() {//Call a function when the state changes.
+            if(http.readyState == 4 && http.status == 200) {
+                alert(http.responseText);
+            }
+        }
+        http.send(params);
+    }
+
+
+    document.getElementById("light7on").onclick = function() {myFunctionLight7On()};
+
+    function myFunctionLight7On() {
+        document.getElementById("light7on").innerHTML = "Pressed!";
+        var http = new XMLHttpRequest();
+        var url = "http://127.0.0.1:5000/lights/7/on";
+        var params = "";
+        http.open("POST", url, true);
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        http.onreadystatechange = function() {//Call a function when the state changes.
+            if(http.readyState == 4 && http.status == 200) {
+                alert(http.responseText);
+            }
+        }
+        http.send(params);
+    }
+
+
+    document.getElementById("light7off").onclick = function() {myFunctionLight7Off()};
+
+    function myFunctionLight7Off() {
+        document.getElementById("light7off").innerHTML = "Pressed!";
+        var http = new XMLHttpRequest();
+        var url = "http://127.0.0.1:5000/lights/7/off";
+        var params = "";
+        http.open("POST", url, true);
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        http.onreadystatechange = function() {//Call a function when the state changes.
+            if(http.readyState == 4 && http.status == 200) {
+                alert(http.responseText);
+            }
+        }
+        http.send(params);
+    }
+
+
+    document.getElementById("playvideo3").onclick = function() {myFunctionPlayVideo3()};
+
+    function myFunctionPlayVideo3() {
+        document.getElementById("playvideo3").innerHTML = "Pressed!";
         var http = new XMLHttpRequest();
         var url = "http://127.0.0.1:5000/lights/off";
         var params = "";
@@ -26,10 +277,10 @@
     }
 
 
-    document.getElementById("green").onclick = function() {myFunctiongreen()};
+    document.getElementById("playaudio3").onclick = function() {myFunctionPlayAudio3()};
 
-    function myFunctiongreen() {
-        document.getElementById("green").innerHTML = "Pressed!";
+    function myFunctionPlayAudio3() {
+        document.getElementById("playaudio3").innerHTML = "Pressed!";
         var http = new XMLHttpRequest();
         var url = "http://127.0.0.1:5000/lights/on";
         var params = "";
@@ -43,6 +294,309 @@
         http.send(params);
     }
 
+    document.getElementById("light1on").onclick = function() {myFunctionLight1On()};
+
+    function myFunctionLight1On() {
+        document.getElementById("light1on").innerHTML = "Pressed!";
+        var http = new XMLHttpRequest();
+        var url = "http://127.0.0.1:5000/lights/1/on";
+        var params = "";
+        http.open("POST", url, true);
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        http.onreadystatechange = function() {//Call a function when the state changes.
+            if(http.readyState == 4 && http.status == 200) {
+                alert(http.responseText);
+            }
+        }
+        http.send(params);
+    }
+
+
+    document.getElementById("light1off").onclick = function() {myFunctionLight1Off()};
+
+    function myFunctionLight1Off() {
+        document.getElementById("light1off").innerHTML = "Pressed!";
+        var http = new XMLHttpRequest();
+        var url = "http://127.0.0.1:5000/lights/1/off";
+        var params = "";
+        http.open("POST", url, true);
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        http.onreadystatechange = function() {//Call a function when the state changes.
+            if(http.readyState == 4 && http.status == 200) {
+                alert(http.responseText);
+            }
+        }
+        http.send(params);
+    }
+
+    document.getElementById("playvideo4").onclick = function() {myFunctionPlayVideo4()};
+
+    function myFunctionPlayVideo4() {
+        document.getElementById("playvideo4").innerHTML = "Pressed!";
+        var http = new XMLHttpRequest();
+        var url = "http://127.0.0.1:5000/video/4/playf";
+        var params = "";
+        http.open("POST", url, true);
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        http.onreadystatechange = function() {//Call a function when the state changes.
+            if(http.readyState == 4 && http.status == 200) {
+                alert(http.responseText);
+            }
+        }
+        http.send(params);
+    }
+
+
+    document.getElementById("playaudio4").onclick = function() {myFunctionPlayAudio4()};
+
+    function myFunctionPlayAudio4() {
+        document.getElementById("playaudio4").innerHTML = "Pressed!";
+        var http = new XMLHttpRequest();
+        var url = "http://127.0.0.1:5000/audio/4/play";
+        var params = "";
+        http.open("POST", url, true);
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        http.onreadystatechange = function() {//Call a function when the state changes.
+            if(http.readyState == 4 && http.status == 200) {
+                alert(http.responseText);
+            }
+        }
+        http.send(params);
+    }
+
+    document.getElementById("light2on").onclick = function() {myFunctionLight2On()};
+
+    function myFunctionLight2On() {
+        document.getElementById("light2on").innerHTML = "Pressed!";
+        var http = new XMLHttpRequest();
+        var url = "http://127.0.0.1:5000/lights/2/on";
+        var params = "";
+        http.open("POST", url, true);
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        http.onreadystatechange = function() {//Call a function when the state changes.
+            if(http.readyState == 4 && http.status == 200) {
+                alert(http.responseText);
+            }
+        }
+        http.send(params);
+    }
+
+
+    document.getElementById("light2off").onclick = function() {myFunctionLight2Off()};
+
+    function myFunctionLight2Off() {
+        document.getElementById("light2off").innerHTML = "Pressed!";
+        var http = new XMLHttpRequest();
+        var url = "http://127.0.0.1:5000/lights/2/off";
+        var params = "";
+        http.open("POST", url, true);
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        http.onreadystatechange = function() {//Call a function when the state changes.
+            if(http.readyState == 4 && http.status == 200) {
+                alert(http.responseText);
+            }
+        }
+        http.send(params);
+    }
+
+    document.getElementById("playvideo5").onclick = function() {myFunctionPlayVideo5()};
+
+    function myFunctionPlayVideo5() {
+        document.getElementById("playvideo5").innerHTML = "Pressed!";
+        var http = new XMLHttpRequest();
+        var url = "http://127.0.0.1:5000/video/5/play";
+        var params = "";
+        http.open("POST", url, true);
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        http.onreadystatechange = function() {//Call a function when the state changes.
+            if(http.readyState == 4 && http.status == 200) {
+                alert(http.responseText);
+            }
+        }
+        http.send(params);
+    }
+
+
+    document.getElementById("playaudio5").onclick = function() {myFunctionPlayAudio5()};
+
+    function myFunctionPlayAudio5() {
+        document.getElementById("playaudio5").innerHTML = "Pressed!";
+        var http = new XMLHttpRequest();
+        var url = "http://127.0.0.1:5000/audio/5/play";
+        var params = "";
+        http.open("POST", url, true);
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        http.onreadystatechange = function() {//Call a function when the state changes.
+            if(http.readyState == 4 && http.status == 200) {
+                alert(http.responseText);
+            }
+        }
+        http.send(params);
+    }
+
+
+
+    document.getElementById("light2on").onclick = function() {myFunctionLight2On()};
+
+    function myFunctionLight2On() {
+        document.getElementById("light2on").innerHTML = "Pressed!";
+        var http = new XMLHttpRequest();
+        var url = "http://127.0.0.1:5000/lights/2/on";
+        var params = "";
+        http.open("POST", url, true);
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        http.onreadystatechange = function() {//Call a function when the state changes.
+            if(http.readyState == 4 && http.status == 200) {
+                alert(http.responseText);
+            }
+        }
+        http.send(params);
+    }
+
+
+    document.getElementById("light2off").onclick = function() {myFunctionLight2Off()};
+
+    function myFunctionLight2Off() {
+        document.getElementById("light2off").innerHTML = "Pressed!";
+        var http = new XMLHttpRequest();
+        var url = "http://127.0.0.1:5000/lights/2/off";
+        var params = "";
+        http.open("POST", url, true);
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        http.onreadystatechange = function() {//Call a function when the state changes.
+            if(http.readyState == 4 && http.status == 200) {
+                alert(http.responseText);
+            }
+        }
+        http.send(params);
+    }
+
+    document.getElementById("playvideo5").onclick = function() {myFunctionPlayVideo5()};
+
+    function myFunctionPlayVideo5() {
+        document.getElementById("playvideo5").innerHTML = "Pressed!";
+        var http = new XMLHttpRequest();
+        var url = "http://127.0.0.1:5000/video/5/play";
+        var params = "";
+        http.open("POST", url, true);
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        http.onreadystatechange = function() {//Call a function when the state changes.
+            if(http.readyState == 4 && http.status == 200) {
+                alert(http.responseText);
+            }
+        }
+        http.send(params);
+    }
+
+
+    document.getElementById("playaudio5").onclick = function() {myFunctionPlayAudio5()};
+
+    function myFunctionPlayAudio5() {
+        document.getElementById("playaudio5").innerHTML = "Pressed!";
+        var http = new XMLHttpRequest();
+        var url = "http://127.0.0.1:5000/audio/5/play";
+        var params = "";
+        http.open("POST", url, true);
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        http.onreadystatechange = function() {//Call a function when the state changes.
+            if(http.readyState == 4 && http.status == 200) {
+                alert(http.responseText);
+            }
+        }
+        http.send(params);
+    }
+
+
+
+    <!--starting instruction 4 : Taking Milk from the fridge-->
+
+
+    document.getElementById("light8on").onclick = function() {myFunctionLight8on()};
+
+    function myFunctionLight8on() {
+        document.getElementById("light8on").innerHTML = "Pressed!";
+        var http = new XMLHttpRequest();
+        var url = "http://127.0.0.1:5000/lights/8/on";
+        var params = "";
+        http.open("POST", url, true);
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        http.onreadystatechange = function() {//Call a function when the state changes.
+            if(http.readyState == 4 && http.status == 200) {
+                alert(http.responseText);
+            }
+        }
+        http.send(params);
+    }
+
+
+    document.getElementById("light8off").onclick = function() {myFunctionLight8off()};
+
+    function myFunctionLight8off() {
+        document.getElementById("light8off").innerHTML = "Pressed!";
+        var http = new XMLHttpRequest();
+        var url = "http://127.0.0.1:5000/lights/8/off";
+        var params = "";
+        http.open("POST", url, true);
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        http.onreadystatechange = function() {//Call a function when the state changes.
+            if(http.readyState == 4 && http.status == 200) {
+                alert(http.responseText);
+            }
+        }
+        http.send(params);
+    }
+
+    document.getElementById("playvideo61").onclick = function() {myFunctionPlayVideo61()};
+
+    function myFunctionPlayVideo61() {
+        document.getElementById("playvideo61").innerHTML = "Pressed!";
+        var http = new XMLHttpRequest();
+        var url = "http://127.0.0.1:5000/video/61/play";
+        var params = "";
+        http.open("POST", url, true);
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        http.onreadystatechange = function() {//Call a function when the state changes.
+            if(http.readyState == 4 && http.status == 200) {
+                alert(http.responseText);
+            }
+        }
+        http.send(params);
+    }
+
+
+    document.getElementById("playvideo62").onclick = function() {myFunctionPlayVideo62()};
+
+    function myFunctionPlayVideo62() {
+        document.getElementById("playvideo62").innerHTML = "Pressed!";
+        var http = new XMLHttpRequest();
+        var url = "http://127.0.0.1:5000/video/62/play";
+        var params = "";
+        http.open("POST", url, true);
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        http.onreadystatechange = function() {//Call a function when the state changes.
+            if(http.readyState == 4 && http.status == 200) {
+                alert(http.responseText);
+            }
+        }
+        http.send(params);
+    }
+
+    document.getElementById("playaudio6").onclick = function() {myFunctionPlayAudio6()};
+
+    function myFunctionPlayAudio6() {
+        document.getElementById("playaudio6").innerHTML = "Pressed!";
+        var http = new XMLHttpRequest();
+        var url = "http://127.0.0.1:5000/audio/6/play";
+        var params = "";
+        http.open("POST", url, true);
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        http.onreadystatechange = function() {//Call a function when the state changes.
+            if(http.readyState == 4 && http.status == 200) {
+                alert(http.responseText);
+            }
+        }
+        http.send(params);
+    }
 
 </script>
 
