@@ -144,6 +144,26 @@ def light7on():
         return {'hello': 'world'}
 
 
+@app.route('/lights/8/off', methods=['POST'])
+def light8off():
+
+    if request.method == 'POST':
+        topic = '{}/feeds/onoff'.format(USERNAME)
+        client.publish(topic, payload="8off")
+        print(topic)
+        return {'hello': 'world'}
+
+
+@app.route('/lights/8/on', methods=['POST'])
+def light8on():
+
+    if request.method == 'POST':
+        topic = '{}/feeds/onoff'.format(USERNAME)
+        client.publish(topic, payload="8on")
+        print(topic)
+        return {'hello': 'world'}
+
+
 @app.route('/lights/7/off', methods=['POST'])
 def light7off():
 
@@ -247,6 +267,36 @@ def audioplay5():
         client.publish(topic, payload="5a")
         print(topic)
         return {'hello': 'world'}
+
+
+@app.route('/video/61/play', methods=['POST'])
+def videoplay61():
+
+    if request.method == 'POST':
+        topic = '{}/feeds/onoff'.format(USERNAME)
+        client.publish(topic, payload="61v")
+        print(topic)
+        return {'hello': 'world'}
+
+
+@app.route('/video/62/play', methods=['POST'])
+def videoplay62():
+
+    if request.method == 'POST':
+        topic = '{}/feeds/onoff'.format(USERNAME)
+        client.publish(topic, payload="62v")
+        print(topic)
+        return {'hello': 'world'}
+
+
+@app.route('/audio/6/play', methods=['POST'])
+def audioplay6():
+    if request.method == 'POST':
+        topic = '{}/feeds/onoff'.format(USERNAME)
+        client.publish(topic, payload="6a")
+        print(topic)
+        return {'hello': 'world'}
+
 
 if __name__ == '__main__':
 
